@@ -8,7 +8,8 @@ RUN useradd compilerexplorer \
     && mkdir -p /home/compilerexplorer \
     && git clone https://:@gitlab.cern.ch:8443/pseyfert/compiler-explorer.git -b production2 \
     && mv /compiler-explorer /home/compilerexplorer/compiler-explorer \
-    && chown -R compilerexplorer:compilerexplorer /home/compilerexplorer
+    && chown -R compilerexplorer:compilerexplorer /home/compilerexplorer \
+    && chmod -R 777 /home/compilerexplorer
 
 RUN wget https://github.com/andreasfertig/cppinsights/releases/download/continuous/insights-ubuntu-14.04.tar.gz \
     && tar -xzf insights-ubuntu-14.04.tar.gz \
