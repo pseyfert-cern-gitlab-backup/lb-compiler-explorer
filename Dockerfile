@@ -31,5 +31,6 @@ ENV HOME /tmp
 
 USER compilerexplorer
 
+EXPOSE 10240
 WORKDIR /home/compilerexplorer/compiler-explorer
 CMD ["make", "-C", "/home/compilerexplorer/compiler-explorer"]
