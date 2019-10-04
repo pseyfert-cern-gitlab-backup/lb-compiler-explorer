@@ -22,6 +22,9 @@ RUN mkdir -p /home/pseyfert/.local/bin \
     && chown -R compilerexplorer:compilerexplorer /home/pseyfert
 ADD --chown=compilerexplorer:compilerexplorer insights /home/pseyfert/.local/bin/
 
+RUN mkdir -p /tmp
+ENV HOME /tmp
+
 USER compilerexplorer
 
 WORKDIR /home/compilerexplorer/compiler-explorer
