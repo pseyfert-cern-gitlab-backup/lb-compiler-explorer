@@ -29,6 +29,9 @@ RUN mkdir -p /usr/lib/clang \
 RUN mkdir -p /tmp
 ENV HOME /tmp
 
+# for picking up the c++.pseyfert-ce.properties file
+ENV EXTRA_ARGS -env=pseyfert-ce
+
 USER compilerexplorer
 
 EXPOSE 10240
