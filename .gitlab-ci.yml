@@ -4,4 +4,4 @@ build:
     - docker-image-build
   script: "echo 'building image'" # unused but this line is required by GitLab CI
   variables:
-      BUILD_ARG: CACHEBUST=$(date +%s)
+      BUILD_ARG: CACHEBUST=$$(date +%s)
