@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# juggeling arguments.
+# -S causes failure
+# -o <out> get's filtered and treated specially
+# input filename gets put last by compiler explorer
+
+declare -a args
+args=()
+
+prev=""
+for x; do
+  if [[ $prev = "-o" ]]; then
+    fname=$x
+  else
+    if [[ $x != "-o" || $x != "-S" ]]; then
+      args+=($x)
+    fi
+  fi
+  prev=$x
+done
+
+# https://stackoverflow.com/a/8247497
+unset 'args[${#args[@]}-1]'
+
+# if there is no -o, then just print to stdout (e.g. version checking at compiler-explorer startup)
+if [[ $fname == "" ]]; then
+  /usr/bin/insights $x -- ${args[@]}
+else
+  /usr/bin/insights $x -- ${args[@]} > $fname
+fi

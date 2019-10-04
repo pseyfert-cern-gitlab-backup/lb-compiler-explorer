@@ -9,13 +9,16 @@ RUN useradd compilerexplorer \
     && git clone https://:@gitlab.cern.ch:8443/pseyfert/compiler-explorer.git -b production2 \
     && mv /compiler-explorer /home/compilerexplorer/compiler-explorer \
     && chown -R compilerexplorer:compilerexplorer /home/compilerexplorer
+
+RUN wget https://github.com/andreasfertig/cppinsights/releases/download/continuous/insights-ubuntu-14.04.tar.gz \
+    && tar -xzf insights-ubuntu-14.04.tar.gz \
+    && mv insights /usr/bin/ \
+    && rm insights-ubuntu-14.04.tar.gz
+
 # FIXME change pseyfert->compilerexplorer
 RUN mkdir -p /home/pseyfert/.local/bin \
-    && wget https://github.com/andreasfertig/cppinsights/releases/download/continuous/insights-ubuntu-14.04.tar.gz \
-    && tar -xzf insights-ubuntu-14.04.tar.gz \
-    && mv insights /home/pseyfert/.local/bin/ \
-    && chown -R compilerexplorer:compilerexplorer /home/pseyfert \
-    && rm insights-ubuntu-14.04.tar.gz
+    && chown -R compilerexplorer:compilerexplorer /home/pseyfert
+ADD --chown=compilerexplorer:compilerexplorer insights /home/pseyfert/.local/bin/
 
 USER compilerexplorer
 
