@@ -6,7 +6,8 @@ RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
 RUN yum install -y nodejs
 RUN useradd compilerexplorer \
     && mkdir -p /home/compilerexplorer \
-    && git clone https://:@gitlab.cern.ch:8443/pseyfert/compiler-explorer.git -b production2 \
+    && git clone https://:@gitlab.cern.ch:8443/pseyfert/compiler-explorer.git --depth=1 -b production2 \
+    && rm -rf compiler-explorer/.git \
     && mv /compiler-explorer /home/compilerexplorer/compiler-explorer \
     && chown -R compilerexplorer:compilerexplorer /home/compilerexplorer \
     && chmod -R 777 /home/compilerexplorer
