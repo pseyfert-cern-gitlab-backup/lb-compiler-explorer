@@ -25,7 +25,7 @@ unset 'args[${#args[@]}-1]'
 
 # if there is no -o, then just print to stdout (e.g. version checking at compiler-explorer startup)
 if [[ $fname == "" ]]; then
-  /usr/bin/insights $x -- ${args[@]}
+  /usr/bin/insights $x -- --gcc-toolchain=/cvmfs/lhcb.cern.ch/lib/lcg/releases/gcc/8.2.0/x86_64-centos7 ${args[@]}
 else
-  /usr/bin/insights $x -- ${args[@]} > $fname
+  /usr/bin/insights $x -- --gcc-toolchain=/cvmfs/lhcb.cern.ch/lib/lcg/releases/gcc/8.2.0/x86_64-centos7 ${args[@]} > $fname
 fi
