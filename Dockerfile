@@ -24,4 +24,5 @@ ADD --chown=compilerexplorer:compilerexplorer insights /home/pseyfert/.local/bin
 
 USER compilerexplorer
 
+WORKDIR /home/compilerexplorer/compiler-explorer
 CMD ["make", "-C", "/home/compilerexplorer/compiler-explorer"]
