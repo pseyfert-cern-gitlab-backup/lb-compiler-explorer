@@ -27,14 +27,17 @@ ENV HOME /tmp
 
 EXPOSE 10240
 
-# force re-pull https://stackoverflow.com/a/36996107
-ARG CACHEBUST=1
+# invalidate cache whenever compiler-explorer config changes (78479 is compiler-explorer.git)
+ADD https://gitlab.cern.ch/api/v4/projects/78479 config_repo
 
 RUN git clone https://:@gitlab.cern.ch:8443/pseyfert/compiler-explorer.git --depth=1 -b production2 \
     && rm -rf compiler-explorer/.git \
     && mv /compiler-explorer /home/compilerexplorer/compiler-explorer \
     && chown -R compilerexplorer:compilerexplorer /home/compilerexplorer \
     && chmod -R 777 /home/compilerexplorer
+
+# get security updates and such after cache invalidation, expected to be smaller than full yum install
+RUN yum update -y
 
 # for picking up the c++.pseyfert-ce.properties file
 ENV EXTRA_ARGS -env=pseyfert-ce
