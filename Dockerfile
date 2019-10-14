@@ -27,22 +27,9 @@ ENV HOME /tmp
 
 EXPOSE 10240
 
-RUN IWYUBUILD=$(mktemp -d) \
-    && cd ${IWYUBUILD} \
-    # && git clone https://github.com/include-what-you-use/include-what-you-use.git --depth=1 -b clang_8.0 \
-    # && git remote add mine https://github.com/pseyfert/include-what-you-use.git \
-    # && git fetch mine \
-    # && git cherry-pick 923b8a64a7833739b7472bee414d8ee46e4b58bb \
-    && git clone https://github.com/pseyfert/include-what-you-use.git --depth=1 -b lhcb_clang_8.0 \
-    && cd include-what-you-use/ \
-    && mkdir build \
-    && cd build/ \
-    && PATH=/cvmfs/lhcb.cern.ch/lib/bin/Linux-x86_64:${PATH} /cvmfs/lhcb.cern.ch/lib/bin/Linux-x86_64/cmake -GNinja .. -DCMAKE_PREFIX_PATH=/cvmfs/lhcb.cern.ch/lib/lcg/releases/clang/8.0.0-ed577/x86_64-centos7/ -DCMAKE_INSTALL_PREFIX=/home/pseyfert/.local -DCMAKE_BUILD_TYPE=Release -DCMAKE_RULE_MESSAGES=NO -DCMAKE_EXPORT_COMPILE_COMMANDS=YES -DCMAKE_CXX_COMPILER=/cvmfs/lhcb.cern.ch/lib/bin/x86_64-centos7/lcg-clang++-8.0.0 -DCMAKE_C_COMPILER=/cvmfs/lhcb.cern.ch/lib/bin/x86_64-centos7/lcg-clang-8.0.0 \
-    && PATH=/cvmfs/lhcb.cern.ch/lib/bin/Linux-x86_64:${PATH} /cvmfs/lhcb.cern.ch/lib/bin/Linux-x86_64/cmake --build . --target install \
-    && cat /cvmfs/lhcb.cern.ch/lib/bin/x86_64-centos7/lcg-clang++-8.0.0 \
-    && mkdir -p /home/pseyfert/.local/lib/clang \
-    && ln -s /cvmfs/lhcb.cern.ch/lib/lcg/releases/clang/8.0.0/x86_64-centos7/lib/clang/8.0.0 /home/pseyfert/.local/lib/clang/8.0.0 \
-    && rm -rf ${IWYUBUILD}
+
+ADD /home/pseyfert/iwyu.tar.gz /tmp/iwyu.tar.gz
+RUN cd /home/pseyfert && tar -xzf /tmp/iwyu.tar.gz
 
 # invalidate cache whenever compiler-explorer config changes (78479 is compiler-explorer.git)
 ADD https://gitlab.cern.ch/api/v4/projects/78479 config_repo

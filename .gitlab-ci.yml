@@ -1,5 +1,31 @@
+stages:
+  - prebuild
+  - mainbuild
+
 build:
-  stage: build
+  stage: mainbuild
   tags:
     - docker-image-build
   script: "echo 'building image'" # unused but this line is required by GitLab CI
+
+build-iwyu:
+  stage: prebuild
+  script:
+    - mkdir /home/pseyfert
+    - IWYUBUILD=$(mktemp -d)
+    - cd ${IWYUBUILD}
+    - git clone https://github.com/pseyfert/include-what-you-use.git --depth=1 -b lhcb_clang_8.0
+    - cd include-what-you-use/
+    - mkdir build
+    - cd build/
+    - PATH=/cvmfs/lhcb.cern.ch/lib/bin/Linux-x86_64:${PATH} /cvmfs/lhcb.cern.ch/lib/bin/Linux-x86_64/cmake -GNinja .. -DCMAKE_PREFIX_PATH=/cvmfs/lhcb.cern.ch/lib/lcg/releases/clang/8.0.0-ed577/x86_64-centos7/ -DCMAKE_INSTALL_PREFIX=/home/pseyfert/.local -DCMAKE_BUILD_TYPE=Release -DCMAKE_RULE_MESSAGES=NO -DCMAKE_EXPORT_COMPILE_COMMANDS=YES -DCMAKE_CXX_COMPILER=/cvmfs/lhcb.cern.ch/lib/bin/x86_64-centos7/lcg-clang++-8.0.0 -DCMAKE_C_COMPILER=/cvmfs/lhcb.cern.ch/lib/bin/x86_64-centos7/lcg-clang-8.0.0
+    - PATH=/cvmfs/lhcb.cern.ch/lib/bin/Linux-x86_64:${PATH} /cvmfs/lhcb.cern.ch/lib/bin/Linux-x86_64/cmake --build . --target install
+    - cat /cvmfs/lhcb.cern.ch/lib/bin/x86_64-centos7/lcg-clang++-8.0.0
+    - mkdir -p /home/pseyfert/.local/lib/clang
+    - ln -s /cvmfs/lhcb.cern.ch/lib/lcg/releases/clang/8.0.0/x86_64-centos7/lib/clang/8.0.0 /home/pseyfert/.local/lib/clang/8.0.0
+    - rm -rf ${IWYUBUILD}
+    - cd /home/pseyfert
+    - tar -czf iwyu.tar.gz .local/
+  cache:
+    paths:
+      - /home/pseyfert/iwyu.tar.gz
