@@ -30,7 +30,7 @@ EXPOSE 10240
 # invalidate cache whenever compiler-explorer config changes (78479 is compiler-explorer.git)
 ADD https://gitlab.cern.ch/api/v4/projects/78479 config_repo
 
-RUN git clone https://:@gitlab.cern.ch:8443/pseyfert/compiler-explorer.git --depth=1 -b production2 \
+RUN git clone https://:@gitlab.cern.ch:8443/pseyfert/compiler-explorer.git --depth=1 -b production_since-2019-10-07 \
     && rm -rf compiler-explorer/.git \
     && mv /compiler-explorer /home/compilerexplorer/compiler-explorer \
     && chown -R compilerexplorer:compilerexplorer /home/compilerexplorer \
