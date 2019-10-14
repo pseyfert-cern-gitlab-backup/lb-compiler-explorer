@@ -41,7 +41,7 @@ RUN IWYUBUILD=$(mktemp -d) \
     && PATH=/cvmfs/lhcb.cern.ch/lib/bin/Linux-x86_64:${PATH} /cvmfs/lhcb.cern.ch/lib/bin/Linux-x86_64/cmake --build . --target install \
     && cat /cvmfs/lhcb.cern.ch/lib/bin/x86_64-centos7/lcg-clang++-8.0.0 \
     && mkdir -p /home/pseyfert/.local/lib/clang \
-    && ln -s /cvmfs/lhcb.cern.ch/lib/lcg/releases/clang/8.0.0/x86_64-centos7/lib/clang/8.0.0 /tmp/include-what-you-use/lib/clang/8.0.0 \
+    && ln -s /cvmfs/lhcb.cern.ch/lib/lcg/releases/clang/8.0.0/x86_64-centos7/lib/clang/8.0.0 /home/pseyfert/.local/lib/clang/8.0.0 \
     && rm -rf ${IWYUBUILD}
 
 # invalidate cache whenever compiler-explorer config changes (78479 is compiler-explorer.git)
