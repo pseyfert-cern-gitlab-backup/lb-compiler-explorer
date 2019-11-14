@@ -1,7 +1,7 @@
 # FROM cern/cc7-base:latest
 FROM gitlab-registry.cern.ch/lhcb-docker/os-base/centos7-devel:latest
 
-RUN yum install -y gcc-c++ make git which
+RUN yum install -y gcc-c++ make git which zlib-devel ncurses-devel
 RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
 RUN yum install -y nodejs
 
@@ -27,8 +27,8 @@ ENV HOME /tmp
 
 EXPOSE 10240
 
-ADD ${CI_PROJECT_DIR}/iwyu.tar.gz /tmp/iwyu.tar.gz
-RUN file /tmp/iwyu.tar.gz && ls -l /tmp/iwyu.tar.gz && echo ${CI_PIPELINE_ID}
+ADD iwyu.tar.gz /tmp/iwyu.tar.gz
+RUN file /tmp/iwyu.tar.gz && ls -l /tmp/iwyu.tar.gz
 RUN cd /home/pseyfert && tar -xzf /tmp/iwyu.tar.gz
 
 # invalidate cache whenever compiler-explorer config changes (78479 is compiler-explorer.git)

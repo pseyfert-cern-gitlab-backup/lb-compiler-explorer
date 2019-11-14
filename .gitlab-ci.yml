@@ -41,8 +41,3 @@ build-iwyu:
   cache:
     paths:
       - iwyu.tar.gz
-  artifacts:
-    # remove once the full CI works out
-    expire_in: 2 h
-    paths:
-      - iwyu.tar.gz
