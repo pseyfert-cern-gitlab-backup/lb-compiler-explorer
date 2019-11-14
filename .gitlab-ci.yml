@@ -26,14 +26,13 @@ build-iwyu:
     - ln -s /cvmfs/lhcb.cern.ch/lib/lcg/releases/clang/8.0.0/x86_64-centos7/lib/clang/8.0.0 /home/pseyfert/.local/lib/clang/8.0.0
     - rm -rf ${IWYUBUILD}
     - cd /home/pseyfert
-    - tar -czf /home/pseyfert/iwyu.tar.gz .local/
-    - ls /home/pseyfert/iwyu.tar.gz
-    - echo "CI_PROJECT_DIR is ${CI_PROJECT_DIR}"
+    - tar -czf iwyu.tar.gz .local/
+    - cp iwyu.tar.gz ${CI_PROJECT_DIR}/
      
   cache:
     # TODO: fix this. doesn't work.
     paths:
-      - /home/pseyfert/iwyu.tar.gz
+      - iwyu.tar.gz
   artifacts:
     expire_in: 2 h
     paths:
