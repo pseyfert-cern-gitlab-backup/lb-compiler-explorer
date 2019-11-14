@@ -27,7 +27,7 @@ ENV HOME /tmp
 
 EXPOSE 10240
 
-ADD iwyu.tar.gz /tmp/iwyu.tar.gz
+ADD --chown=compilerexplorer:compilerexplorer iwyu.tar.gz /tmp/iwyu.tar.gz
 RUN file /tmp/iwyu.tar.gz && ls -l /tmp/iwyu.tar.gz
 RUN cd /home/pseyfert && tar -xzf /tmp/iwyu.tar.gz
 

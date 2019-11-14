@@ -10,7 +10,7 @@ build:
   stage: mainbuild
   image: docker:19.03.0
   script:
-    - ls -l iwyu.tar.gz
+    - ls -l
     - docker info
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - docker build --pull -t "$CI_REGISTRY_IMAGE" .
