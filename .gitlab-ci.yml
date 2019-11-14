@@ -4,6 +4,18 @@ stages:
   - mainbuild
 
 build:
+# copy and paste from https://gitlab.cern.ch/gitlabci-examples/build_docker_image/blob/master/.gitlab-ci.yml
+  tags:
+    - docker-privileged
+  stage: mainbuild
+  image: docker:19.03.0
+  script:
+    - docker info
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+    - docker push "$CI_REGISTRY_IMAGE" 
+
+build:
   stage: mainbuild
   tags:
     - docker-image-build
