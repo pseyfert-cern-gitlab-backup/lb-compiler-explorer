@@ -11,7 +11,7 @@ build:
 build-iwyu:
   stage: prebuild
   script:
-    - yum install -y zlib ncurses-devel
+    - yum install -y zlib-devel ncurses-devel
     - mkdir /home/pseyfert
     - IWYUBUILD=$(mktemp -d)
     - cd ${IWYUBUILD}
