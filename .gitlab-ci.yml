@@ -26,7 +26,7 @@ build-iwyu:
     - ln -s /cvmfs/lhcb.cern.ch/lib/lcg/releases/clang/8.0.0/x86_64-centos7/lib/clang/8.0.0 /home/pseyfert/.local/lib/clang/8.0.0
     - rm -rf ${IWYUBUILD}
     - cd /home/pseyfert
-    - tar -czf iwyu.tar.gz .local/
+    - tar -czf /home/pseyfert/iwyu.tar.gz .local/
   cache:
     paths:
       - /home/pseyfert/iwyu.tar.gz
