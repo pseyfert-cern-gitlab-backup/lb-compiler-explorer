@@ -30,10 +30,10 @@ build-iwyu:
     - cp iwyu.tar.gz ${CI_PROJECT_DIR}/
      
   cache:
-    # TODO: fix this. doesn't work.
     paths:
       - iwyu.tar.gz
   artifacts:
+    # remove once the full CI works out
     expire_in: 2 h
     paths:
       - iwyu.tar.gz

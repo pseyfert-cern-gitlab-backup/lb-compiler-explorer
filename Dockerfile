@@ -28,6 +28,7 @@ ENV HOME /tmp
 EXPOSE 10240
 
 ADD ${CI_PROJECT_DIR}/iwyu.tar.gz /tmp/iwyu.tar.gz
+RUN file /tmp/iwyu.tar.gz
 RUN cd /home/pseyfert && tar -xzf /tmp/iwyu.tar.gz
 
 # invalidate cache whenever compiler-explorer config changes (78479 is compiler-explorer.git)
