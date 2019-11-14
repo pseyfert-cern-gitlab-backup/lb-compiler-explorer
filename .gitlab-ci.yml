@@ -38,6 +38,11 @@ build-iwyu:
     - tar -czf iwyu.tar.gz .local/
     - cp iwyu.tar.gz ${CI_PROJECT_DIR}/
      
-  cache:
+  # cache:
+  #   paths:
+  #     - iwyu.tar.gz
+  artifacts:
+    # remove once the full CI works out
+    expire_in: 2 h
     paths:
       - iwyu.tar.gz
