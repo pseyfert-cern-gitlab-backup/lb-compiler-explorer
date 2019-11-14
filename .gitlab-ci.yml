@@ -27,6 +27,12 @@ build-iwyu:
     - rm -rf ${IWYUBUILD}
     - cd /home/pseyfert
     - tar -czf /home/pseyfert/iwyu.tar.gz .local/
+     
   cache:
+    # TODO: fix this. doesn't work.
+    paths:
+      - /home/pseyfert/iwyu.tar.gz
+  artifacts:
+    expire_in: 2 h
     paths:
       - /home/pseyfert/iwyu.tar.gz
