@@ -1,5 +1,6 @@
 stages:
   - prebuild
+  - debugger
   - mainbuild
 
 build:
@@ -7,6 +8,14 @@ build:
   tags:
     - docker-image-build
   script: "echo 'building image'" # unused but this line is required by GitLab CI
+
+debugger:
+  stage: wondering
+  script:
+    - ls iwyu.tar.gz
+    - pwd
+    - echo ${CI_PROJECT_DIR}
+    - ls ${CI_PROJECT_DIR}
 
 build-iwyu:
   stage: prebuild
