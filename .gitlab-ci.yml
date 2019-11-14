@@ -15,12 +15,6 @@ build:
     - docker build --pull -t "$CI_REGISTRY_IMAGE" .
     - docker push "$CI_REGISTRY_IMAGE" 
 
-build:
-  stage: mainbuild
-  tags:
-    - docker-image-build
-  script: "echo 'building image'" # unused but this line is required by GitLab CI
-
 debugger:
   stage: wondering
   script:
