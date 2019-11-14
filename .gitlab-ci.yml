@@ -3,18 +3,10 @@ stages:
   - mainbuild
 
 build:
-# copy and paste from https://gitlab.cern.ch/gitlabci-examples/build_docker_image/blob/master/.gitlab-ci.yml
-  tags:
-    - docker-privileged
   stage: mainbuild
-  image: docker:19.03.0
-  script:
-    - ls -l
-    - chmod 777 iwyu.tar.gz
-    - docker info
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
-    - docker push "$CI_REGISTRY_IMAGE" 
+  tags:
+    - docker-image-build
+  script: "echo 'building image'" # unused but this line is required by GitLab CI
 
 build-iwyu:
   stage: prebuild

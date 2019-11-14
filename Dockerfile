@@ -27,9 +27,8 @@ ENV HOME /tmp
 
 EXPOSE 10240
 
-ADD --chown=compilerexplorer:compilerexplorer iwyu.tar.gz /tmp/
-RUN ls -la /tmp/.local
-# RUN cd /home/pseyfert && tar -xzf /tmp/iwyu.tar.gz
+# automatically unpacks
+ADD --chown=compilerexplorer:compilerexplorer iwyu.tar.gz /home/pseyfert
 
 # invalidate cache whenever compiler-explorer config changes (78479 is compiler-explorer.git)
 ADD https://gitlab.cern.ch/api/v4/projects/78479 config_repo
