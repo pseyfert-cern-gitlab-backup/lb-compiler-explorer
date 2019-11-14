@@ -27,6 +27,7 @@ build-iwyu:
     - rm -rf ${IWYUBUILD}
     - cd /home/pseyfert
     - tar -czf /home/pseyfert/iwyu.tar.gz .local/
+    - ls /home/pseyfert/iwyu.tar.gz
      
   cache:
     # TODO: fix this. doesn't work.
