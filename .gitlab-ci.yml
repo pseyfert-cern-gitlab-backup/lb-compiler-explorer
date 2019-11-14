@@ -1,6 +1,5 @@
 stages:
   - prebuild
-  - wondering
   - mainbuild
 
 build:
@@ -11,18 +10,11 @@ build:
   image: docker:19.03.0
   script:
     - ls -l
+    - chmod 777 iwyu.tar.gz
     - docker info
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - docker build --pull -t "$CI_REGISTRY_IMAGE" .
     - docker push "$CI_REGISTRY_IMAGE" 
-
-debugger:
-  stage: wondering
-  script:
-    - ls iwyu.tar.gz
-    - pwd
-    - echo ${CI_PROJECT_DIR}
-    - ls ${CI_PROJECT_DIR}
 
 build-iwyu:
   stage: prebuild

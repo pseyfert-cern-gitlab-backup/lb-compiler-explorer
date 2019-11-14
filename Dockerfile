@@ -28,7 +28,7 @@ ENV HOME /tmp
 EXPOSE 10240
 
 ADD --chown=compilerexplorer:compilerexplorer iwyu.tar.gz /tmp/
-RUN file /tmp/iwyu.tar.gz && ls -l /tmp/iwyu.tar.gz
+RUN file /tmp/iwyu.tar.gz && ls -l /tmp/
 RUN cd /home/pseyfert && tar -xzf /tmp/iwyu.tar.gz
 
 # invalidate cache whenever compiler-explorer config changes (78479 is compiler-explorer.git)
