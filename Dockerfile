@@ -29,7 +29,7 @@ EXPOSE 10240
 
 # automatically unpacks
 ADD --chown=compilerexplorer:compilerexplorer iwyu.tar.gz /home/pseyfert
-RUN ls -l /home/pseyfert/.local && ls -l /home/pseyfert/.local/bin
+RUN chown -R compilerexplorer:compilerexplorer /home/pseyfert
 
 # invalidate cache whenever compiler-explorer config changes (78479 is compiler-explorer.git)
 ADD https://gitlab.cern.ch/api/v4/projects/78479 config_repo
