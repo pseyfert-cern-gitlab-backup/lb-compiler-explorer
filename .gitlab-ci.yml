@@ -28,6 +28,7 @@ build-iwyu:
     - cd /home/pseyfert
     - tar -czf /home/pseyfert/iwyu.tar.gz .local/
     - ls /home/pseyfert/iwyu.tar.gz
+    - echo "CI_PROJECT_DIR is ${CI_PROJECT_DIR}"
      
   cache:
     # TODO: fix this. doesn't work.
