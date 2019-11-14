@@ -36,4 +36,4 @@ build-iwyu:
   artifacts:
     expire_in: 2 h
     paths:
-      - /home/pseyfert/iwyu.tar.gz
+      - iwyu.tar.gz
