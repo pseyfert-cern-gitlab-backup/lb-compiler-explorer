@@ -1,6 +1,6 @@
 stages:
   - prebuild
-  - debugger
+  - wondering
   - mainbuild
 
 build:
