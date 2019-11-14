@@ -1,7 +1,7 @@
 # FROM cern/cc7-base:latest
 FROM gitlab-registry.cern.ch/lhcb-docker/os-base/centos7-devel:latest
 
-RUN yum install -y gcc-c++ make git which
+RUN yum install -y gcc-c++ make git which zlib-devel ncurses-devel
 RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
 RUN yum install -y nodejs
 
@@ -26,6 +26,10 @@ RUN mkdir -p /tmp
 ENV HOME /tmp
 
 EXPOSE 10240
+
+# automatically unpacks
+ADD --chown=compilerexplorer:compilerexplorer iwyu.tar.gz /home/pseyfert
+RUN chown -R compilerexplorer:compilerexplorer /home/pseyfert
 
 # invalidate cache whenever compiler-explorer config changes (78479 is compiler-explorer.git)
 ADD https://gitlab.cern.ch/api/v4/projects/78479 config_repo
