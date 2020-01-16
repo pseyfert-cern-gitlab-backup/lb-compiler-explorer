@@ -37,13 +37,12 @@ ADD https://gitlab.cern.ch/api/v4/projects/78479 config_repo
 RUN git clone https://:@gitlab.cern.ch:8443/pseyfert/compiler-explorer.git --depth=1 -b production_since-2019-11-14 \
     && rm -rf compiler-explorer/.git \
     && mv /compiler-explorer /home/compilerexplorer/compiler-explorer \
+    && make -C /home/compilerexplorer/compiler-explorer prereqs \
     && chown -R compilerexplorer:compilerexplorer /home/compilerexplorer \
     && chmod -R 777 /home/compilerexplorer
 
 # get security updates and such after cache invalidation, expected to be smaller than full yum install
 RUN yum update -y
-
-RUN make -C /home/compilerexplorer/compiler-explorer prereqs
 
 # for picking up the c++.pseyfert-ce.properties file
 ENV EXTRA_ARGS -env=pseyfert-ce
