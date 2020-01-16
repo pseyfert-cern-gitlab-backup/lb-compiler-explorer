@@ -43,6 +43,8 @@ RUN git clone https://:@gitlab.cern.ch:8443/pseyfert/compiler-explorer.git --dep
 # get security updates and such after cache invalidation, expected to be smaller than full yum install
 RUN yum update -y
 
+RUN make prereqs
+
 # for picking up the c++.pseyfert-ce.properties file
 ENV EXTRA_ARGS -env=pseyfert-ce
 
