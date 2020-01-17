@@ -36,6 +36,8 @@ ADD https://gitlab.cern.ch/api/v4/projects/78479 config_repo
 
 RUN git clone https://:@gitlab.cern.ch:8443/pseyfert/compiler-explorer.git --depth=1 -b production_since-2019-11-14 \
     && cd compiler-explorer \
+    && git config --global user.email "novalid@e.mail" \
+    && git config --global user.name "docker-build" \
     && git fetch origin --depth=2 dateprint \
     && git cherry-pick 66e8e8336 \
     && cd .. \
