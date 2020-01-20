@@ -43,7 +43,7 @@ RUN git clone https://:@gitlab.cern.ch:8443/pseyfert/compiler-explorer.git --dep
     && cd .. \
     && rm -rf compiler-explorer/.git \
     && mv /compiler-explorer /home/compilerexplorer/compiler-explorer \
-    && make -C /home/compilerexplorer/compiler-explorer prereqs \
+    && make -C /home/compilerexplorer/compiler-explorer dist \
     && chown -R compilerexplorer:compilerexplorer /home/compilerexplorer \
     && chmod -R 777 /home/compilerexplorer
 
@@ -57,4 +57,4 @@ USER compilerexplorer
 
 WORKDIR /home/compilerexplorer/compiler-explorer
 
-CMD ["make", "-C", "/home/compilerexplorer/compiler-explorer"]
+CMD ["./node_modules/.bin/supervisor", "--exec", "/usr/bin/node" "--", "./app.js", "-env=pseyfert-ce", "--static", "out/dist", "--dist"]
