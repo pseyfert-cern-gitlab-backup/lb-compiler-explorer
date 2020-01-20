@@ -55,6 +55,8 @@ RUN yum update -y
 # for picking up the c++.pseyfert-ce.properties file
 ENV EXTRA_ARGS -env=pseyfert-ce
 
+ENV NODE_ENV production
+
 USER compilerexplorer
 
 WORKDIR /home/compilerexplorer/compiler-explorer
