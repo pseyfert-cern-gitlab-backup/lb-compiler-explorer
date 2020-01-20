@@ -43,7 +43,7 @@ RUN git clone https://:@gitlab.cern.ch:8443/pseyfert/compiler-explorer.git --dep
     && cd .. \
     && mv /compiler-explorer /home/compilerexplorer/compiler-explorer \
     && cd /home/compilerexplorer/compiler-explorer \
-    && make -C /home/compilerexplorer/compiler-explorer dist \
+    && make dist \
     && rm -rf /home/compilerexplorer/compiler-explorer/.git \
     && chown -R compilerexplorer:compilerexplorer /home/compilerexplorer \
     && chmod -R 777 /home/compilerexplorer
