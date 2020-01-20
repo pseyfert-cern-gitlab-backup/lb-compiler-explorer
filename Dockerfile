@@ -59,4 +59,4 @@ USER compilerexplorer
 
 WORKDIR /home/compilerexplorer/compiler-explorer
 
-CMD ["/home/compilerexplorer/compiler-explorer/node_modules/.bin/supervisor", "--exec", "/usr/bin/node" "--", "./app.js", "-env=pseyfert-ce", "--static", "out/dist", "--dist"]
+CMD ["/home/compilerexplorer/compiler-explorer/node_modules/.bin/supervisor", "--exec", "/usr/bin/node", "--", "./app.js", "-env=pseyfert-ce", "--static", "out/dist", "--dist"]
