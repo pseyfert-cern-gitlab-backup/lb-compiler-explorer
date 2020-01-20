@@ -41,9 +41,9 @@ RUN git clone https://:@gitlab.cern.ch:8443/pseyfert/compiler-explorer.git --dep
     && git fetch origin --depth=2 dateprint \
     && git cherry-pick 66e8e8336 \
     && cd .. \
-    && rm -rf compiler-explorer/.git \
     && mv /compiler-explorer /home/compilerexplorer/compiler-explorer \
     && make -C /home/compilerexplorer/compiler-explorer dist \
+    && rm -rf /home/compilerexplorer/compiler-explorer/.git \
     && chown -R compilerexplorer:compilerexplorer /home/compilerexplorer \
     && chmod -R 777 /home/compilerexplorer
 
