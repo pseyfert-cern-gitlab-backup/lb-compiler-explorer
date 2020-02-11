@@ -18,8 +18,10 @@ RUN useradd compilerexplorer \
 ADD --chown=compilerexplorer:compilerexplorer insights /home/pseyfert/.local/bin/
 
 # get clang headers for cppinsights
+# RUN mkdir -p /usr/lib/clang \
+#     && ln -s /cvmfs/lhcb.cern.ch/lib/lcg/releases/clang/8.0.0-ed577/x86_64-centos7/lib/clang/8.0.0 /usr/lib/clang/8.0.1
 RUN mkdir -p /usr/lib/clang \
-    && ln -s /cvmfs/lhcb.cern.ch/lib/lcg/releases/clang/8.0.0-ed577/x86_64-centos7/lib/clang/8.0.0 /usr/lib/clang/8.0.1
+    && ln -s /cvmfs/lhcb.cern.ch/lib/lcg/releases/clang/8.0.0-ed577/x86_64-centos7/lib/clang/8.0.0 /usr/lib/clang/9.0.1
 
 # will be needed by npm at runtime
 RUN mkdir -p /tmp
